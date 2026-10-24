@@ -13,3 +13,31 @@ target_compile_features(
     PRIVATE 
     cxx_std_17
 )
+
+add_library(FileForgeCore)
+
+target_sources(
+    FileForgeCore
+    PRIVATE 
+        src/FileForgeCore.cpp 
+        
+    PUBLIC 
+    FILE_SET public_headers
+    TYPE HEADERS 
+    BASE_DIRS
+        include/FileForgeCore
+    FILES 
+        include/FileForgeCore/FileForgeCore.hpp
+)
+
+target_link_libraries(
+    FileForge
+    PRIVATE 
+    FileForgeCore   
+)
+
+target_include_directories(
+    FileForgeCore
+    PUBLIC 
+        ${CMAKE_CURRENT_SOURCE_DIR}/include   
+)
